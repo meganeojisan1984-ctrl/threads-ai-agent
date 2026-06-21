@@ -1,11 +1,56 @@
 [
   {
-    "id": "72e3420091e70304",
+    "id": "762d670e7bc8dc58",
+    "topic_id": "wp-2116-ai",
+    "text": "【AI副業おすすめ完全ガイド！無料版と有料プランのポイント比較】",
+    "source_url": "https://meganeojisanblog.com/ai-job/ai-side-business-premium-guide/",
+    "affiliate_intent": false,
+    "post_type": "thread",
+    "parts": [
+      "【AI副業おすすめ完全ガイド！無料版と有料プランのポイント比較】",
+      "①無料版のメリットはコストゼロで気軽に始められる点ですが、利用制限や機能制限があります。",
+      "②有料プランは機能や使用量に余裕があり、副業で継続的に活用したい場合に適しています。",
+      "③ご自身の利用目的や頻度に合わせてプラン選びを検討しましょう。",
+      "詳しいプラン比較や選び方のコツはプロフィールのブログにまとめています。"
+    ],
+    "cta_style": "profile",
+    "status": "queued",
+    "created_at": "2026-06-21T23:44:52.267529Z"
+  },
+  {
+    "id": "f1ec99bcb1b8afb7",
+    "topic_id": "wp-2103-2026-ai",
+    "text": "【2026年版AI副業ロードマップ｜初心者向け講座とツールの選び方】",
+    "source_url": "https://meganeojisanblog.com/ai-job/ai-sidejob-roadmap/",
+    "affiliate_intent": false,
+    "post_type": "thread",
+    "parts": [
+      "【2026年版AI副業ロードマップ｜初心者向け講座とツールの選び方】",
+      "①AI副業を始めるなら、まず基礎知識を学べる講座で学習をスタート。",
+      "②次に、目的に合ったツールを選び、効率的に作業を進めることがポイントです。",
+      "③ロードマップに沿ってステップを踏むことで、無理なくスキルアップが可能です。",
+      "もっと詳しい講座やツール比較はプロフィールのブログに掲載しています。"
+    ],
+    "cta_style": "profile",
+    "status": "queued",
+    "created_at": "2026-06-21T23:44:52.267562Z"
+  },
+  {
+    "id": "f21c5cd8e2162d0e",
     "topic_id": "wp-2085-gemini-3-5-ai",
-    "text": "Gemini 3.5の新機能を活用したAI副業について解説。特に動画生成や業務の自動化に役立つ具体的な使い方を紹介しています。最新技術を生かすことで作業効率化が期待でき、副業の幅も広がります。ブログではステップごとの実践例も掲載しているので、興味がある方はぜひチェックしてみてください。",
+    "text": "【Gemini 3.5の新機能で広がるAI副業の可能性】",
     "source_url": "https://meganeojisanblog.com/ai-job/gemini-3-5-no-shinkinou-de-ai-fukugyou-douga/",
     "affiliate_intent": false,
+    "post_type": "thread",
+    "parts": [
+      "【Gemini 3.5の新機能で広がるAI副業の可能性】",
+      "①Gemini 3.5では動画生成機能が強化されており、副業でのコンテンツ作成に役立ちます。",
+      "②さらに、自動化ツールと組み合わせることで作業効率を上げやすくなりました。",
+      "③具体的な活用事例や手順を理解して、実務に活かしていきましょう。",
+      "詳しい使い方や活用方法はプロフィールのブログにまとめています。"
+    ],
+    "cta_style": "profile",
     "status": "queued",
-    "created_at": "2026-06-21T11:45:05.298371Z"
+    "created_at": "2026-06-21T23:44:52.267579Z"
   }
 ]
