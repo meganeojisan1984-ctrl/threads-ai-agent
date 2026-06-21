@@ -10,13 +10,14 @@ from threads_ai_agent.reply_agent import ReplyAgent
 from threads_ai_agent.research_agent import ResearchAgent
 from threads_ai_agent.storage import JsonStorage
 from threads_ai_agent.threads_client import ThreadsClient
+from threads_ai_agent.trend_agent import TrendResearchAgent
 from threads_ai_agent.wordpress import WordPressClient
 from threads_ai_agent.writer_agent import WriterAgent
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="threads-agent")
-    parser.add_argument("command", choices=["research", "write", "publish", "reply", "analyze"])
+    parser.add_argument("command", choices=["research", "trends", "write", "publish", "reply", "analyze"])
     parser.add_argument("--data-dir", default="data")
     return parser
 
@@ -28,6 +29,9 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.command == "research":
         ResearchAgent(WordPressClient(config.site_base_url), storage).refresh_topics()
+        return 0
+    if args.command == "trends":
+        TrendResearchAgent(storage).refresh_trends()
         return 0
     if args.command == "write":
         if not config.openai_api_key:

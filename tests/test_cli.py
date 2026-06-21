@@ -6,3 +6,9 @@ def test_cli_parser_accepts_known_commands():
 
     assert args.command == "analyze"
     assert args.data_dir == "tmp-data"
+
+
+def test_cli_parser_accepts_trends_command():
+    args = build_parser().parse_args(["trends"])
+
+    assert args.command == "trends"
