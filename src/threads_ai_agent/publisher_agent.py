@@ -29,7 +29,8 @@ class PublisherAgent:
         if not queue:
             return None
         draft = queue[0]
-        safety = self.safety.check_text(draft.text, affiliate_intent=draft.affiliate_intent)
+        publish_text = _with_source_url(draft.text, draft.source_url)
+        safety = self.safety.check_text(publish_text, affiliate_intent=draft.affiliate_intent)
         if not safety.allowed:
             self.storage.append_jsonl(
                 "blocked_publish.jsonl",
@@ -38,16 +39,22 @@ class PublisherAgent:
             self.storage.write_json("post_queue.json", [item.model_dump(mode="json") for item in queue[1:]])
             return None
         if self.config.dry_run:
-            self.storage.append_jsonl("dry_run_publish.jsonl", {"draft_id": draft.id, "text": draft.text})
+            self.storage.append_jsonl("dry_run_publish.jsonl", {"draft_id": draft.id, "text": publish_text})
             return None
-        container_id = self.threads_client.create_text_container(draft.text)
+        container_id = self.threads_client.create_text_container(publish_text)
         media_id = self.threads_client.publish_container(container_id)
         published = PublishedPost(
             draft_id=draft.id,
             threads_media_id=media_id,
-            text=draft.text,
+            text=publish_text,
             source_url=draft.source_url,
         )
         self.storage.append_jsonl("published_posts.jsonl", published.model_dump(mode="json"))
         self.storage.write_json("post_queue.json", [item.model_dump(mode="json") for item in queue[1:]])
         return published
+
+
+def _with_source_url(text: str, source_url: str) -> str:
+    if not source_url or source_url in text:
+        return text
+    return f"{text.rstrip()}\n\n{source_url}"

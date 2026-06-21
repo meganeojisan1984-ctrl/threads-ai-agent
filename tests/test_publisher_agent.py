@@ -35,6 +35,9 @@ def test_publisher_dry_run_does_not_publish(tmp_path: Path):
     assert result is None
     assert storage.read_jsonl("published_posts.jsonl") == []
     assert storage.read_jsonl("dry_run_publish.jsonl")[0]["draft_id"] == "d1"
+    assert storage.read_jsonl("dry_run_publish.jsonl")[0]["text"].endswith(
+        "https://meganeojisanblog.com/ai-job/ai-fukugyou-osusume-guide/"
+    )
 
 
 def test_publisher_publishes_next_safe_post(tmp_path: Path):
@@ -52,4 +55,5 @@ def test_publisher_publishes_next_safe_post(tmp_path: Path):
 
     assert result is not None
     assert result.threads_media_id == "media-1"
+    assert result.text.endswith("https://meganeojisanblog.com/ai-job/ai-fukugyou-osusume-guide/")
     assert storage.read_jsonl("published_posts.jsonl")[0]["threads_media_id"] == "media-1"
