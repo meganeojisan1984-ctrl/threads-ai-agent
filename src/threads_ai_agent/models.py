@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import UTC, datetime
 
 from pydantic import BaseModel, Field
 
@@ -20,7 +20,7 @@ class PostDraft(BaseModel):
     source_url: str
     affiliate_intent: bool = False
     status: str = "queued"
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 class PublishedPost(BaseModel):
@@ -28,7 +28,7 @@ class PublishedPost(BaseModel):
     threads_media_id: str
     text: str
     source_url: str
-    published_at: datetime = Field(default_factory=datetime.utcnow)
+    published_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
 
 class IncomingReply(BaseModel):
