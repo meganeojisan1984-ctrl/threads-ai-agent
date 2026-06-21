@@ -30,12 +30,17 @@ class WriterAgent:
         blocked: list[dict] = []
         for item, topic in zip(result.get("posts", []), topics):
             affiliate_intent = bool(item.get("affiliate_intent", topic.intent == "affiliate"))
-            text = item["text"].strip()
-            safety = self.safety.check_text(text, affiliate_intent=affiliate_intent)
-            draft_id = hashlib.sha1(f"{topic.id}:{text}".encode("utf-8")).hexdigest()[:16]
+            parts = [part.strip() for part in item.get("parts", []) if part.strip()]
+            if not parts:
+                parts = [item["text"].strip()]
+            text = parts[0]
+            combined_text = "\n\n".join(parts)
+            safety = self.safety.check_text(combined_text, affiliate_intent=affiliate_intent)
+            draft_id = hashlib.sha1(f"{topic.id}:{combined_text}".encode("utf-8")).hexdigest()[:16]
             if not safety.allowed:
-                blocked.append({"topic_id": topic.id, "text": text, "reasons": safety.reasons})
+                blocked.append({"topic_id": topic.id, "text": combined_text, "reasons": safety.reasons})
                 continue
+            post_type = item.get("post_type", "thread" if len(parts) > 1 else "single")
             drafts.append(
                 PostDraft(
                     id=draft_id,
@@ -43,6 +48,9 @@ class WriterAgent:
                     text=text,
                     source_url=item.get("source_url", topic.source_url),
                     affiliate_intent=affiliate_intent,
+                    post_type=post_type,
+                    parts=parts,
+                    cta_style=item.get("cta_style", "profile"),
                 )
             )
         self.storage.write_json("post_queue.json", [draft.model_dump(mode="json") for draft in drafts])
@@ -56,8 +64,11 @@ class WriterAgent:
         )
         return (
             "あなたはAI副業ブログのThreads運用担当です。"
-            "各トピックから500文字以内の日本語投稿を作成してください。"
+            "プロフィールにはブログURLがすでに掲載されています。"
+            "各トピックから、単発投稿またはスレッド投稿を作成してください。"
+            "長い説明が必要な場合は、複数のpartsに分けてください。"
+            "最後のpartには「詳しい手順はプロフィールのブログにまとめています」のような自然な導線を入れてください。"
             "誇大表現、断定的な収益保証、煽りを避けてください。"
-            "JSON形式で {\"posts\":[{\"text\":\"...\",\"source_url\":\"...\",\"affiliate_intent\":false}]} を返してください。\n"
+            "JSON形式で {\"posts\":[{\"post_type\":\"single|thread\",\"parts\":[\"...\"],\"source_url\":\"...\",\"cta_style\":\"profile\",\"affiliate_intent\":false}]} を返してください。\n"
             f"{topic_lines}"
         )

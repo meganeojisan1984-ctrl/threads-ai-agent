@@ -19,6 +19,9 @@ class PostDraft(BaseModel):
     text: str
     source_url: str
     affiliate_intent: bool = False
+    post_type: str = "single"
+    parts: list[str] = Field(default_factory=list)
+    cta_style: str = "profile"
     status: str = "queued"
     created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
