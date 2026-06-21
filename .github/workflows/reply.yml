@@ -1,0 +1,43 @@
+name: reply
+
+on:
+  schedule:
+    - cron: "23 1 * * *"
+    - cron: "23 5 * * *"
+    - cron: "23 9 * * *"
+    - cron: "23 13 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: threads-ai-agent-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  reply:
+    runs-on: ubuntu-latest
+    if: vars.BOT_ENABLED == 'true'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -e .[dev]
+      - run: threads-agent reply
+        env:
+          BOT_ENABLED: ${{ vars.BOT_ENABLED }}
+          DRY_RUN: ${{ vars.DRY_RUN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          REPLIES_PER_DAY: ${{ vars.REPLIES_PER_DAY }}
+          PER_RUN_REPLY_LIMIT: ${{ vars.PER_RUN_REPLY_LIMIT }}
+      - name: Commit reply logs
+        run: |
+          git config user.name "threads-ai-agent"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || git commit -m "chore: update reply logs"
+          git push
