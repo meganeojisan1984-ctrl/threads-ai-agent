@@ -34,6 +34,30 @@ class ThreadsClient:
         )
         return self._id_from_response(response)
 
+    def fetch_replies(self, media_id: str) -> list[dict]:
+        response = requests.get(
+            f"{self.api_base}/{media_id}/replies",
+            params={"access_token": self.access_token},
+            timeout=30,
+        )
+        if response.status_code >= 400:
+            raise ThreadsApiError(f"Threads API error {response.status_code}: {response.text[:300]}")
+        return response.json().get("data", [])
+
+    def reply_to_media(self, media_id: str, text: str) -> str:
+        container_response = requests.post(
+            f"{self.api_base}/{self.user_id}/threads",
+            data={
+                "media_type": "TEXT",
+                "text": text,
+                "reply_to_id": media_id,
+                "access_token": self.access_token,
+            },
+            timeout=30,
+        )
+        container_id = self._id_from_response(container_response)
+        return self.publish_container(container_id)
+
     def _id_from_response(self, response: requests.Response) -> str:
         if response.status_code >= 400:
             raise ThreadsApiError(f"Threads API error {response.status_code}: {response.text[:300]}")
