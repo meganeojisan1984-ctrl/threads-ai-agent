@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "threads-ai-agent"
+version = "0.1.0"
+description = "GitHub Actions based Threads automation for an AI side-hustle blog"
+requires-python = ">=3.11"
+dependencies = [
+  "openai>=1.88.0",
+  "pydantic>=2.7.0",
+  "requests>=2.32.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.2.0", "responses>=0.25.0"]
+
+[project.scripts]
+threads-agent = "threads_ai_agent.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
