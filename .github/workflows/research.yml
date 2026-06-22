@@ -25,6 +25,7 @@ jobs:
       - run: threads-agent research
         env:
           SITE_BASE_URL: ${{ vars.SITE_BASE_URL }}
+      - run: threads-agent trends
       - run: threads-agent write
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}

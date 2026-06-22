@@ -10,6 +10,7 @@ on:
         type: choice
         options:
           - research
+          - trends
           - write
           - publish
           - reply
