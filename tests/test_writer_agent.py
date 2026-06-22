@@ -22,6 +22,24 @@ def test_writer_prompt_requires_viral_threads_style_rules():
     assert "効率アップ" in prompt
 
 
+def test_writer_prompt_blocks_overhyped_threads_phrases():
+    storage = JsonStorage("data")
+    agent = WriterAgent(FakeTextClient(), storage)
+    prompt = agent._build_prompt([
+        type("TopicLike", (), {
+            "title": "Google AI latest release",
+            "source_url": "https://example.com",
+            "intent": "trend",
+        })()
+    ])
+
+    assert "確認いただければ幸いです" in prompt
+    assert "おすすめしたい" in prompt
+    assert "爆速" in prompt
+    assert "落とし穴があった" in prompt
+    assert "差がつく" in prompt
+
+
 class FakeTextClient:
     def generate_json(self, prompt: str):
         return {

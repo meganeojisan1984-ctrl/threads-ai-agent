@@ -15,6 +15,15 @@ def test_safety_blocks_blog_listing_style_cta():
     assert "promotional_template" in result.reasons
 
 
+def test_safety_blocks_overhyped_threads_phrases():
+    result = SafetyAgent().check_text(
+        "実はここに落とし穴があった。AI副業初心者にはおすすめしたい。爆速で差がつくので、確認いただければ幸いです。"
+    )
+
+    assert result.allowed is False
+    assert "promotional_template" in result.reasons
+
+
 def test_safety_blocks_guaranteed_income_claims():
     result = SafetyAgent().check_text("AI副業なら誰でも必ず月100万円を稼げます")
 
