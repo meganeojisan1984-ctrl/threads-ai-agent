@@ -64,8 +64,8 @@ After one real `publish` workflow succeeds, switch to full automation with these
 The scheduled workflows then run automatically in Japan time:
 
 - `research`: 07:17 JST, refreshes blog topics, trend topics, and the post queue.
-- `publish`: 09:07, 14:07, and 20:07 JST, publishes one queued post each run.
-- `reply`: 10:23, 14:23, 18:23, and 22:23 JST, replies within the daily reply limits.
+- `publish`: 08:07, 12:07, and 20:07 JST, publishes one queued post each run.
+- `reply`: 08:37, 12:37, 20:37, and 22:37 JST, replies within the daily reply limits.
 - `analyze`: 23:41 JST, writes the daily report.
 
 Emergency stop:
