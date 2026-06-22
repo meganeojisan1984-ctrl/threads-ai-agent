@@ -72,3 +72,21 @@ def test_writer_agent_creates_thread_parts_with_profile_cta(tmp_path: Path):
     assert drafts[0].cta_style == "profile"
     assert "プロフィール" in drafts[0].parts[-1]
     assert storage.read_json("post_queue.json", default=[])[0]["parts"] == drafts[0].parts
+
+
+def test_writer_prompt_asks_for_threads_native_copy():
+    storage = JsonStorage("data")
+    agent = WriterAgent(FakeTextClient(), storage)
+    prompt = agent._build_prompt([
+        type("TopicLike", (), {
+            "title": "急上昇AIニュース",
+            "source_url": "https://example.com",
+            "intent": "trend",
+        })()
+    ])
+
+    assert "説明文・記事紹介文ではなく" in prompt
+    assert "1つ目のpartは必ずフック" in prompt
+    assert "ニュースの丸写しではなく" in prompt
+    assert "プロフィールにはブログURLがすでに掲載" in prompt
+    assert "禁止表現" in prompt
