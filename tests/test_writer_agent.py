@@ -40,6 +40,24 @@ def test_writer_prompt_blocks_overhyped_threads_phrases():
     assert "差がつく" in prompt
 
 
+def test_writer_prompt_requires_problem_to_affiliate_flow():
+    storage = JsonStorage("data")
+    agent = WriterAgent(FakeTextClient(), storage)
+    prompt = agent._build_prompt([
+        type("TopicLike", (), {
+            "title": "Google AI latest release",
+            "source_url": "https://example.com",
+            "intent": "trend",
+        })()
+    ])
+
+    assert "読者の悩み" in prompt
+    assert "失敗原因" in prompt
+    assert "具体行動" in prompt
+    assert "ブログ収益につなげる流れ" in prompt
+    assert "AIニュースを毎日追ってるのに" in prompt
+
+
 class FakeTextClient:
     def generate_json(self, prompt: str):
         return {

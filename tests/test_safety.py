@@ -24,6 +24,13 @@ def test_safety_blocks_overhyped_threads_phrases():
     assert "promotional_template" in result.reasons
 
 
+def test_safety_blocks_weak_summary_cta_phrases():
+    result = SafetyAgent().check_text("AI副業の本質を近道で学べます。忙しい40代にマッチします。ブログで書いています。")
+
+    assert result.allowed is False
+    assert "promotional_template" in result.reasons
+
+
 def test_safety_blocks_guaranteed_income_claims():
     result = SafetyAgent().check_text("AI副業なら誰でも必ず月100万円を稼げます")
 
