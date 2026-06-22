@@ -8,6 +8,7 @@ from pathlib import Path
 import requests
 
 from threads_ai_agent.models import Topic
+from threads_ai_agent.safety import has_sensitive_topic
 from threads_ai_agent.storage import JsonStorage
 
 
@@ -25,6 +26,8 @@ class TrendResearchAgent:
         topics: list[Topic] = []
         for feed in feeds:
             for item in self._fetch_feed_items(feed["url"]):
+                if has_sensitive_topic(f"{item['title']} {item['link']}"):
+                    continue
                 topics.append(_topic_from_feed_item(item["title"], item["link"]))
                 if len(topics) >= limit:
                     break

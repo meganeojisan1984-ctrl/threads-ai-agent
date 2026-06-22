@@ -27,3 +27,17 @@ def test_reply_classification_blocks_tax_advice():
 
     assert decision.category == "risky"
     assert decision.auto_reply_allowed is False
+
+
+def test_safety_blocks_sensitive_medical_ai_posts():
+    result = SafetyAgent().check_text("医療AIのAMIEを使った副業アイデアを紹介します。慢性疾患の管理にも役立ちます。")
+
+    assert result.allowed is False
+    assert "sensitive_topic" in result.reasons
+
+
+def test_safety_blocks_article_intro_templates():
+    result = SafetyAgent().check_text("Geminiの使い方を解説しています。興味がある方はぜひチェックしてください。")
+
+    assert result.allowed is False
+    assert "promotional_template" in result.reasons

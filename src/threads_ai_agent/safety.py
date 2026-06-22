@@ -33,6 +33,38 @@ PROMPT_INJECTION_MARKERS = [
 ]
 
 
+SENSITIVE_TOPIC_KEYWORDS = [
+    "amie",
+    "chronic disease",
+    "diagnosis",
+    "medical ai",
+    "medicine",
+    "医療",
+    "診断",
+    "治療",
+    "疾患",
+    "慢性疾患",
+    "薬",
+    "投資",
+    "税金",
+    "法律",
+    "訴訟",
+]
+
+PROMOTIONAL_TEMPLATE_PHRASES = [
+    "解説しています",
+    "紹介しています",
+    "ぜひチェック",
+    "最新技術を生かすことで",
+    "興味がある方",
+]
+
+
+def has_sensitive_topic(text: str) -> bool:
+    normalized = text.lower()
+    return any(keyword in normalized for keyword in SENSITIVE_TOPIC_KEYWORDS)
+
+
 class SafetyAgent:
     def check_text(self, text: str, *, affiliate_intent: bool = False) -> SafetyResult:
         reasons: list[str] = []
@@ -41,6 +73,10 @@ class SafetyAgent:
             reasons.append("guaranteed_income")
         if any(marker in normalized for marker in PROMPT_INJECTION_MARKERS):
             reasons.append("prompt_injection")
+        if has_sensitive_topic(text):
+            reasons.append("sensitive_topic")
+        if any(phrase in text for phrase in PROMOTIONAL_TEMPLATE_PHRASES):
+            reasons.append("promotional_template")
         if affiliate_intent and "PR" not in text and "プロモーション" not in text:
             reasons.append("missing_pr_disclosure")
         return SafetyResult(allowed=not reasons, reasons=reasons)
