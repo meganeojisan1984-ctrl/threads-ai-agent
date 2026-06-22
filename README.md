@@ -50,3 +50,32 @@ Set `BOT_ENABLED=false` to stop all publish and reply actions.
 7. Set `BOT_ENABLED=true` while keeping `DRY_RUN=true`.
 8. Run `publish` manually and confirm `data/dry_run_publish.jsonl`.
 9. Set `DRY_RUN=false` only after one dry-run publish looks correct.
+
+## Full Automation
+
+After one real `publish` workflow succeeds, switch to full automation with these repository variables:
+
+- `BOT_ENABLED=true`
+- `DRY_RUN=false`
+- `POSTS_PER_DAY=3`
+- `REPLIES_PER_DAY=30`
+- `PER_RUN_REPLY_LIMIT=10`
+
+The scheduled workflows then run automatically in Japan time:
+
+- `research`: 07:17 JST, refreshes blog topics, trend topics, and the post queue.
+- `publish`: 09:07, 14:07, and 20:07 JST, publishes one queued post each run.
+- `reply`: 10:23, 14:23, 18:23, and 22:23 JST, replies within the daily reply limits.
+- `analyze`: 23:41 JST, writes the daily report.
+
+Emergency stop:
+
+1. Set `BOT_ENABLED=false`.
+2. Leave `DRY_RUN=true` until the next post queue has been reviewed.
+3. If a bad draft appears, delete it from `data/post_queue.json` or rerun `manual` with `write`.
+
+Recommended operating rhythm:
+
+1. Check `data/published_posts.jsonl` once per day.
+2. Check `data/daily_reports.jsonl` once per week.
+3. Keep OpenAI project budget low while the automation is new.

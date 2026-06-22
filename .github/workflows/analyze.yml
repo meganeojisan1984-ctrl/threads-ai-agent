@@ -2,6 +2,7 @@ name: analyze
 
 on:
   schedule:
+    # 23:41 JST - write the daily operation report.
     - cron: "41 14 * * *"
   workflow_dispatch:
 

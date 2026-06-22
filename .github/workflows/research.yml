@@ -2,6 +2,7 @@ name: research
 
 on:
   schedule:
+    # 07:17 JST - refresh topics, trends, and post queue.
     - cron: "17 22 * * *"
   workflow_dispatch:
 

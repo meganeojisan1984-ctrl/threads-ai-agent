@@ -2,8 +2,11 @@ name: publish
 
 on:
   schedule:
+    # 09:07 JST - publish the morning queued post.
     - cron: "07 0 * * *"
+    # 14:07 JST - publish the afternoon queued post.
     - cron: "07 5 * * *"
+    # 20:07 JST - publish the evening queued post.
     - cron: "07 11 * * *"
   workflow_dispatch:
 

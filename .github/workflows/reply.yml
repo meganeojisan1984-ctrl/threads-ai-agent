@@ -2,9 +2,13 @@ name: reply
 
 on:
   schedule:
+    # 10:23 JST - reply check after the morning post.
     - cron: "23 1 * * *"
+    # 14:23 JST - reply check after the afternoon post.
     - cron: "23 5 * * *"
+    # 18:23 JST - evening reply check.
     - cron: "23 9 * * *"
+    # 22:23 JST - final daily reply check.
     - cron: "23 13 * * *"
   workflow_dispatch:
 
