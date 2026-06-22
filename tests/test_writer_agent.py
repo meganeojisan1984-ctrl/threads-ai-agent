@@ -4,6 +4,24 @@ from threads_ai_agent.storage import JsonStorage
 from threads_ai_agent.writer_agent import WriterAgent
 
 
+def test_writer_prompt_requires_viral_threads_style_rules():
+    storage = JsonStorage("data")
+    agent = WriterAgent(FakeTextClient(), storage)
+    prompt = agent._build_prompt([
+        type("TopicLike", (), {
+            "title": "Google AI latest release",
+            "source_url": "https://example.com",
+            "intent": "trend",
+        })()
+    ])
+
+    assert "違和感" in prompt
+    assert "失敗談" in prompt
+    assert "今日30分浮くか" in prompt
+    assert "説明文ではなく" in prompt
+    assert "効率アップ" in prompt
+
+
 class FakeTextClient:
     def generate_json(self, prompt: str):
         return {

@@ -1,6 +1,20 @@
 from threads_ai_agent.safety import SafetyAgent
 
 
+def test_safety_blocks_generic_threads_growth_phrases():
+    result = SafetyAgent().check_text("AI副業の効率アップや新サービス開発のチャンスが広がる。使いこなすことが鍵です。")
+
+    assert result.allowed is False
+    assert "promotional_template" in result.reasons
+
+
+def test_safety_blocks_blog_listing_style_cta():
+    result = SafetyAgent().check_text("詳しい活用手順はプロフィールのブログに掲載しています。")
+
+    assert result.allowed is False
+    assert "promotional_template" in result.reasons
+
+
 def test_safety_blocks_guaranteed_income_claims():
     result = SafetyAgent().check_text("AI副業なら誰でも必ず月100万円を稼げます")
 
