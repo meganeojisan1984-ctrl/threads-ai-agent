@@ -4,6 +4,25 @@ from threads_ai_agent.storage import JsonStorage
 from threads_ai_agent.writer_agent import WriterAgent
 
 
+def test_writer_prompt_requires_longer_save_worthy_thread_parts():
+    storage = JsonStorage("data")
+    agent = WriterAgent(FakeTextClient(), storage)
+    prompt = agent._build_prompt([
+        type("TopicLike", (), {
+            "title": "Google AI latest release",
+            "source_url": "https://example.com",
+            "intent": "trend",
+        })()
+    ])
+
+    assert "220〜320文字" in prompt
+    assert "最低3文" in prompt
+    assert "1投稿だけ読んでも意味が通る" in prompt
+    assert "主張・理由・具体例" in prompt
+    assert "スレッド全体で900〜1,300文字" in prompt
+    assert "2行だけの返信は禁止" in prompt
+
+
 def test_writer_prompt_requires_viral_threads_style_rules():
     storage = JsonStorage("data")
     agent = WriterAgent(FakeTextClient(), storage)
