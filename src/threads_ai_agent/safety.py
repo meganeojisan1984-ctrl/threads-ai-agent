@@ -19,7 +19,7 @@ RISKY_REPLY_KEYWORDS = [
     "労働契約",
     "法律",
     "違法",
-    "投資",
+    "投資助言",
     "病気",
     "死にたい",
     "訴える",
@@ -31,7 +31,6 @@ PROMPT_INJECTION_MARKERS = [
     "ignore previous",
     "reveal your instructions",
 ]
-
 
 SENSITIVE_TOPIC_KEYWORDS = [
     "amie",
@@ -45,9 +44,8 @@ SENSITIVE_TOPIC_KEYWORDS = [
     "疾患",
     "慢性疾患",
     "薬",
-    "投資",
-    "税金",
-    "法律",
+    "税務判断",
+    "法律判断",
     "訴訟",
 ]
 
@@ -55,20 +53,16 @@ PROMOTIONAL_TEMPLATE_PHRASES = [
     "解説しています",
     "紹介しています",
     "ぜひチェック",
-    "最新技術を生かすことで",
     "興味がある方",
+    "最新技術を生かすことで",
     "効率アップ",
     "チャンスが広がる",
-    "使いこなすことが鍵",
-    "鍵です",
     "活用手順",
     "掲載しています",
-    "ポイントとは",
-    "確認いただければ幸いです",
+    "確認いただければ幸い",
     "おすすめしたい",
-    "爆速",
-    "落とし穴があった",
-    "差がつく",
+    "迅速",
+    "差がつく穴",
     "本質",
     "近道",
     "マッチします",
@@ -93,7 +87,7 @@ class SafetyAgent:
             reasons.append("sensitive_topic")
         if any(phrase in text for phrase in PROMOTIONAL_TEMPLATE_PHRASES):
             reasons.append("promotional_template")
-        if affiliate_intent and "PR" not in text and "プロモーション" not in text:
+        if affiliate_intent and "PR" not in text and "アフィリエイト" not in text:
             reasons.append("missing_pr_disclosure")
         return SafetyResult(allowed=not reasons, reasons=reasons)
 
@@ -111,7 +105,7 @@ class SafetyAgent:
                 auto_reply_allowed=False,
                 reasons=["sensitive_topic"],
             )
-        if any(keyword in text for keyword in ["有料", "スクール", "稼げ", "案件", "ツール"]):
+        if any(keyword in text for keyword in ["有料", "スクール", "稼ぐ", "案件", "ツール"]):
             return ReplyDecision(category="sales_sensitive", auto_reply_allowed=True, reasons=[])
         if len(text.strip()) < 2:
             return ReplyDecision(category="unknown", auto_reply_allowed=False, reasons=["too_short"])

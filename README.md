@@ -41,7 +41,7 @@ Set `BOT_ENABLED=false` to stop all publish and reply actions.
    - `BOT_ENABLED=false`
    - `DRY_RUN=true`
    - `SITE_BASE_URL=https://meganeojisanblog.com/ai-job/`
-   - `POSTS_PER_DAY=3`
+   - `POSTS_PER_DAY=2`
    - `REPLIES_PER_DAY=30`
    - `PER_RUN_REPLY_LIMIT=10`
 4. Run the `manual` workflow with `analyze`.
@@ -57,15 +57,15 @@ After one real `publish` workflow succeeds, switch to full automation with these
 
 - `BOT_ENABLED=true`
 - `DRY_RUN=false`
-- `POSTS_PER_DAY=3`
+- `POSTS_PER_DAY=2`
 - `REPLIES_PER_DAY=30`
 - `PER_RUN_REPLY_LIMIT=10`
 
 The scheduled workflows then run automatically in Japan time:
 
-- `research`: 07:17 JST, refreshes blog topics, trend topics, and the post queue.
-- `publish`: 08:07, 12:07, and 20:07 JST, publishes one queued post each run.
-- `reply`: 08:37, 12:37, 20:37, and 22:37 JST, replies within the daily reply limits.
+- `research`: 07:17 JST, refreshes blog topics, trend topics, and the two-post queue.
+- `publish`: 08:07 and 20:07 JST, publishes one queued post each run.
+- `reply`: 08:37, 20:37, and 22:37 JST, replies within the daily reply limits.
 - `analyze`: 23:41 JST, writes the daily report.
 
 Emergency stop:
@@ -79,3 +79,4 @@ Recommended operating rhythm:
 1. Check `data/published_posts.jsonl` once per day.
 2. Check `data/daily_reports.jsonl` once per week.
 3. Keep OpenAI project budget low while the automation is new.
+

@@ -6,7 +6,15 @@ from threads_ai_agent.models import Topic
 from threads_ai_agent.storage import JsonStorage
 
 
-AFFILIATE_HINTS = ["スクール", "ConoHa", "ツール", "案件", "比較", "DMM", "サーバー"]
+AFFILIATE_HINTS = [
+    "スクール",
+    "ConoHa",
+    "ツール",
+    "案件",
+    "比較",
+    "DMM",
+    "サービス",
+]
 
 
 def _slugify(value: str) -> str:

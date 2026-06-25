@@ -47,7 +47,7 @@ class BotConfig:
             site_base_url=source.get("SITE_BASE_URL", "https://meganeojisanblog.com/ai-job/"),
             line_offer_url=source.get("LINE_OFFER_URL", ""),
             affiliate_disclosure=source.get("DEFAULT_AFFILIATE_DISCLOSURE", "PRを含みます。"),
-            posts_per_day=_int(source.get("POSTS_PER_DAY"), 3),
+            posts_per_day=_int(source.get("POSTS_PER_DAY"), 2),
             replies_per_day=_int(source.get("REPLIES_PER_DAY"), 30),
             per_run_reply_limit=_int(source.get("PER_RUN_REPLY_LIMIT"), 10),
             openai_api_key=source.get("OPENAI_API_KEY"),

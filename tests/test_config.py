@@ -9,7 +9,7 @@ def test_bot_config_defaults_are_safe():
     assert config.enabled is False
     assert config.dry_run is True
     assert config.site_base_url == "https://meganeojisanblog.com/ai-job/"
-    assert config.posts_per_day == 3
+    assert config.posts_per_day == 2
     assert config.replies_per_day == 30
     assert config.per_run_reply_limit == 10
 
@@ -36,3 +36,4 @@ def test_bot_config_parses_boolean_and_integer_values():
 def test_missing_threads_token_fails_when_publish_is_enabled():
     with pytest.raises(ConfigError, match="THREADS_ACCESS_TOKEN"):
         BotConfig.from_env({"BOT_ENABLED": "true", "DRY_RUN": "false"})
+

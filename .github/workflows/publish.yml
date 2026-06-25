@@ -2,11 +2,9 @@ name: publish
 
 on:
   schedule:
-    # 08:07 JST - publish before the workday starts.
+    # 08:07 JST - publish for the morning discovery window.
     - cron: "07 23 * * *"
-    # 12:07 JST - publish during the lunch break.
-    - cron: "07 3 * * *"
-    # 20:07 JST - publish the evening queued post.
+    # 20:07 JST - publish for the evening side-hustle planning window.
     - cron: "07 11 * * *"
   workflow_dispatch:
 

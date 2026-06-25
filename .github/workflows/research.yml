@@ -2,7 +2,7 @@ name: research
 
 on:
   schedule:
-    # 07:17 JST - refresh topics, trends, and post queue.
+    # 07:17 JST - refresh topics, trends, and the two-post daily queue.
     - cron: "17 22 * * *"
   workflow_dispatch:
 
@@ -30,7 +30,7 @@ jobs:
       - run: threads-agent write
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          POSTS_PER_DAY: ${{ vars.POSTS_PER_DAY }}
+          POSTS_PER_DAY: "2"
       - name: Commit data updates
         run: |
           git config user.name "threads-ai-agent"

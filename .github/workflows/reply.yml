@@ -4,8 +4,6 @@ on:
   schedule:
     # 08:37 JST - reply check after the morning post.
     - cron: "37 23 * * *"
-    # 12:37 JST - reply check after the lunch post.
-    - cron: "37 3 * * *"
     # 20:37 JST - reply check after the evening post.
     - cron: "37 11 * * *"
     # 22:37 JST - final daily reply check.
