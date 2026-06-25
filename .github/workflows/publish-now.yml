@@ -30,6 +30,7 @@ jobs:
           DRY_RUN: ${{ vars.DRY_RUN }}
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       - name: Commit publish logs
         run: |
           git config user.name "threads-ai-agent"
@@ -37,3 +38,4 @@ jobs:
           git add data
           git diff --cached --quiet || git commit -m "chore: publish queued threads post"
           git push
+
