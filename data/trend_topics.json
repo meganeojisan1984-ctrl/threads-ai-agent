@@ -1,5 +1,12 @@
 [
   {
+    "id": "trend-1c40ec4b06bc",
+    "title": "急上昇AIニュースをAI副業目線で解説: Expanding Managed Agents in Gemini API:  background tasks, remote MCP and more",
+    "source_url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+    "intent": "trend",
+    "weight": 1.3
+  },
+  {
     "id": "trend-ffe157d964a4",
     "title": "急上昇AIニュースをAI副業目線で解説: The latest AI news we announced in June 2026",
     "source_url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/",
@@ -59,13 +66,6 @@
     "id": "trend-91f35295a345",
     "title": "急上昇AIニュースをAI副業目線で解説: 5 ways Google Search can level up your thrift and vintage shopping",
     "source_url": "https://blog.google/products-and-platforms/products/search/thrifting-tips/",
-    "intent": "trend",
-    "weight": 1.3
-  },
-  {
-    "id": "trend-8bae2a97f4b6",
-    "title": "急上昇AIニュースをAI副業目線で解説: How we used Gemini to build Google I/O 2026",
-    "source_url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
     "intent": "trend",
     "weight": 1.3
   }
