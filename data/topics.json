@@ -1,5 +1,12 @@
 [
   {
+    "id": "trend-651e2afe884c",
+    "title": "急上昇AIニュースをAI副業目線で解説: 3 Google updates from Galaxy Unpacked 2026",
+    "source_url": "https://blog.google/products-and-platforms/platforms/android/galaxy-unpacked-2026/",
+    "intent": "trend",
+    "weight": 1.3
+  },
+  {
     "id": "trend-43b2c1db4fa4",
     "title": "急上昇AIニュースをAI副業目線で解説: Connect more of your apps to Search",
     "source_url": "https://blog.google/products-and-platforms/products/search/connected-apps/",
@@ -59,13 +66,6 @@
     "id": "trend-43b2f24c020f",
     "title": "急上昇AIニュースをAI副業目線で解説: Our latest Google Finance upgrades, including a new app",
     "source_url": "https://blog.google/products-and-platforms/products/search/google-finance-updates-june-2026/",
-    "intent": "trend",
-    "weight": 1.3
-  },
-  {
-    "id": "trend-3a39047ceff4",
-    "title": "急上昇AIニュースをAI副業目線で解説: We’re strengthening our presence in Alabama through new investments and community support.",
-    "source_url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
     "intent": "trend",
     "weight": 1.3
   },
