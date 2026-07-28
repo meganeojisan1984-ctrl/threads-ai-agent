@@ -1,5 +1,26 @@
 [
   {
+    "id": "trend-cebaacd40bd3",
+    "title": "急上昇AIニュースをAI副業目線で解説: Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+    "source_url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+    "intent": "trend",
+    "weight": 1.3
+  },
+  {
+    "id": "trend-29f7c63e03ee",
+    "title": "急上昇AIニュースをAI副業目線で解説: 5 ways AI Mode in Search helps you enjoy the real world",
+    "source_url": "https://blog.google/products-and-platforms/products/search/ai-mode-real-world-tips/",
+    "intent": "trend",
+    "weight": 1.3
+  },
+  {
+    "id": "trend-e424b3d2a7db",
+    "title": "急上昇AIニュースをAI副業目線で解説: 5 ways to host the ultimate dinner party with Google Search",
+    "source_url": "https://blog.google/products-and-platforms/products/search/dinner-party-hosting-tips/",
+    "intent": "trend",
+    "weight": 1.3
+  },
+  {
     "id": "trend-651e2afe884c",
     "title": "急上昇AIニュースをAI副業目線で解説: 3 Google updates from Galaxy Unpacked 2026",
     "source_url": "https://blog.google/products-and-platforms/platforms/android/galaxy-unpacked-2026/",
@@ -45,27 +66,6 @@
     "id": "trend-1b3cf0e6ced1",
     "title": "急上昇AIニュースをAI副業目線で解説: New York City educators and industry leaders gathered at Google’s offices to shape the future of AI in classrooms.",
     "source_url": "https://blog.google/products-and-platforms/products/education/nyc-ai-summit/",
-    "intent": "trend",
-    "weight": 1.3
-  },
-  {
-    "id": "trend-edec7f1b9193",
-    "title": "急上昇AIニュースをAI副業目線で解説: Unlocking Britain’s next era of productivity: Building a nation of AI trailblazers",
-    "source_url": "https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/unlocking-britains-next-era-of-productivity-building-a-nation-of-ai-trailblazers/",
-    "intent": "trend",
-    "weight": 1.3
-  },
-  {
-    "id": "trend-0d675c88e410",
-    "title": "急上昇AIニュースをAI副業目線で解説: Ask an AI expert: What exactly is the full stack?",
-    "source_url": "https://blog.google/innovation-and-ai/technology/ai/full-stack-ai-explainer/",
-    "intent": "trend",
-    "weight": 1.3
-  },
-  {
-    "id": "trend-43b2f24c020f",
-    "title": "急上昇AIニュースをAI副業目線で解説: Our latest Google Finance upgrades, including a new app",
-    "source_url": "https://blog.google/products-and-platforms/products/search/google-finance-updates-june-2026/",
     "intent": "trend",
     "weight": 1.3
   }
